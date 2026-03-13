@@ -19,7 +19,6 @@ from utils.search_utils import perform_web_search
 
 st.set_page_config(
     page_title=APP_NAME,
-    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -138,8 +137,7 @@ def render_sidebar() -> tuple[str, bool]:
 
         st.info(
             "Upload a scheme PDF or just ask me about any government scheme. "
-            "I'll help you find what you're eligible for!",
-            icon="",
+            "I'll help you find what you're eligible for!"
         )
 
         st.markdown("---")
@@ -183,8 +181,7 @@ def render_sidebar() -> tuple[str, bool]:
                             st.session_state.vector_store = vector_store
                             st.session_state.current_doc_name = uploaded_file.name
                             st.success(
-                                f"Document loaded! You can now ask questions about it.",
-                                icon="",
+                                f"Document loaded! You can now ask questions about it."
                             )
                         else:
                             st.error("Failed to build vector store. Check console.")
@@ -193,8 +190,7 @@ def render_sidebar() -> tuple[str, bool]:
                         st.error(f"Error processing document: {e}")
             else:
                 st.success(
-                    f"**{st.session_state.current_doc_name}** is loaded.",
-                    icon="",
+                    f"**{st.session_state.current_doc_name}** is loaded."
                 )
 
         st.markdown("---")
