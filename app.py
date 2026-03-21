@@ -4,7 +4,10 @@ import tempfile
 
 import streamlit as st
 
-sys.path.insert(0, os.path.dirname(__file__))
+# Ensure the project root is in sys.path for submodule imports
+project_root = os.path.dirname(os.path.abspath(__file__))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from config.config import APP_NAME
 from models.llm import get_llm_response
@@ -61,6 +64,11 @@ st.markdown(
         margin-bottom: 0.6rem;
         padding: 0.4rem 0.8rem;
         box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        color: #1f2937 !important;
+    }
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessage"] div {
+        color: #1f2937 !important;
     }
 
     /* ── Quick-question buttons ── */

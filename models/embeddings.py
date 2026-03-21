@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class EmbeddingModel:
 
     def __init__(self):

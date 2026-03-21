@@ -1,12 +1,17 @@
 def perform_web_search(query: str) -> str:
+    """
+    Performs a web search using DuckDuckGo to get the latest government scheme info.
+    """
     try:
         from duckduckgo_search import DDGS
 
-        enriched_query = f"{query} India government scheme 2024"
+        # Add context to focus on Indian government schemes
+        enriched_query = f"{query} India government scheme 2024 2025"
 
         results_text: list[str] = []
 
         with DDGS() as ddgs:
+            # text() returns an iterator of results. Limit to top 3 for speed/token economy.
             raw_results = list(ddgs.text(enriched_query, max_results=3))
 
         if not raw_results:
@@ -29,11 +34,12 @@ def perform_web_search(query: str) -> str:
 
     except ImportError:
         error_msg = (
-            "duckduckgo-search is not installed. Run: pip install duckduckgo-search"
+            "The 'duckduckgo-search' package is missing. "
+            "Please run: pip install duckduckgo-search"
         )
         print(f"[search_utils.py] {error_msg}")
-        return "Web search unavailable."
+        return "Web search is currently unavailable (missing dependency)."
 
     except Exception as e:
         print(f"[search_utils.py] perform_web_search failed: {e}")
-        return "Web search unavailable."
+        return "Web search is currently unavailable due to an unexpected error."
